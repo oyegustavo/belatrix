@@ -1,10 +1,8 @@
 package belatrix;
 
-import java.util.List;
-
 public class LoggerManagerImpl implements LoggerManager{
 	private LogAppender _logAppender;
-	private List<LogParameter> _parameters;
+	private LogParameter _parameters;
 	private String _logName;
 	private String _fileURL;
 	
@@ -12,7 +10,7 @@ public class LoggerManagerImpl implements LoggerManager{
 		
 	}
 	
-	public LoggerManagerImpl( List<LogParameter> parameters) {
+	public LoggerManagerImpl( LogParameter parameters) {
 		_parameters=parameters;
 	}
 
@@ -24,20 +22,18 @@ public class LoggerManagerImpl implements LoggerManager{
 	}
 	
 	private void redirectLog() {
-		for (LogParameter parameter : _parameters) {
-				if (Boolean.TRUE.equals(parameter.isLogToConsole())) {
+				if (Boolean.TRUE.equals(_parameters.isLogToConsole())) {
 					_logAppender= new ConsoleAppender();
-				}else if(Boolean.TRUE.equals(parameter.isLogToDatabase())) {
+				}else if(Boolean.TRUE.equals(_parameters.isLogToDatabase())) {
 					_logAppender= new DatabaseAppender();
-				}else if(Boolean.TRUE.equals(parameter.isLogToFile())) {
+				}else if(Boolean.TRUE.equals(_parameters.isLogToFile())) {
 					_logAppender= new FileAppender(_fileURL);
 				}
-		}
 	}
 
 	@Override
-	public void setParameters(List<LogParameter> _parameters) {
-		this._parameters = _parameters;
+	public void setParameters(LogParameter parameters) {
+		this._parameters = parameters;
 	}
 
 	@Override

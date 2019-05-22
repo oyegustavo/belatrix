@@ -18,14 +18,12 @@ public class DatabaseAppender extends Appender implements LogAppender{
 	}
 
 	@Override
-	public void appendToLog(String text,List<LogParameter> parameters) {
+	public void appendToLog(String text,LogParameter parameters) {
 	
-		for (LogParameter logParameter : parameters) {
-			if(logParameter.isLogToDatabase()) {
+			if(parameters.isLogToDatabase()) {
 				System.out.println("soy database appender");
-				writeLog(logParameter, text);
+				writeLog(parameters, text);
 			}
-		}
 	}
 	
 	private void saveLog() {
