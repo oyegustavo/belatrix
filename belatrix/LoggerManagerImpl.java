@@ -16,19 +16,32 @@ public class LoggerManagerImpl implements LoggerManager{
 
 	@Override
 	public void logMessage(String text) {
-	
+	try {
 		redirectLog();
 		_logAppender.appendToLog(text,_parameters);
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+		
 	}
 	
-	private void redirectLog() {
-				if (Boolean.TRUE.equals(_parameters.isLogToConsole())) {
-					_logAppender= new ConsoleAppender();
-				}else if(Boolean.TRUE.equals(_parameters.isLogToDatabase())) {
-					_logAppender= new DatabaseAppender();
-				}else if(Boolean.TRUE.equals(_parameters.isLogToFile())) {
-					_logAppender= new FileAppender(_fileURL);
-				}
+	private void redirectLog() throws Exception {
+		if (_parameters==null || !_parameters.isLogToConsole() && !_parameters.isLogToDatabase() && !_parameters.isLogToFile()) {
+			throw new Exception("Invalid configuration");
+		} 
+		
+		try {
+			if (Boolean.TRUE.equals(_parameters.isLogToConsole())) {
+				_logAppender= new ConsoleAppender();
+			}else if(Boolean.TRUE.equals(_parameters.isLogToDatabase())) {
+				_logAppender= new DatabaseAppender();
+			}else if(Boolean.TRUE.equals(_parameters.isLogToFile())) {
+				_logAppender= new FileAppender(_fileURL);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+				
 	}
 
 	@Override

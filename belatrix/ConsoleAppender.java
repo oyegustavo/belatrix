@@ -11,8 +11,12 @@ public class ConsoleAppender extends Appender implements LogAppender{
 			if(parameters.isLogToConsole()) {
 				System.out.println("soy console appender");
 				getLogger().addHandler(_ch);
-				getLogger().log(Level.INFO, writeLog(parameters, text));
-				writeLog(parameters, text);
+				try {
+					getLogger().log(Level.INFO, writeLog(parameters, text));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
 			}
 	}
 

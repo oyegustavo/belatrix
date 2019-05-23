@@ -1,9 +1,6 @@
 package belatrix;
 
 import java.io.File;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 
@@ -15,7 +12,10 @@ public class FileAppender extends Appender implements LogAppender{
 	public FileAppender() {
 		
 	}
-	public FileAppender(String fileURL) {
+	public FileAppender(String fileURL)throws Exception {
+		if (fileURL==null || fileURL.isEmpty()) {
+			throw new Exception("fileURL must be specified");
+		}
 		
 		try {
 			File logFile = new File(fileURL);
@@ -26,7 +26,7 @@ public class FileAppender extends Appender implements LogAppender{
 			_fh= new FileHandler(fileURL);
 		
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 	}
@@ -37,7 +37,11 @@ public class FileAppender extends Appender implements LogAppender{
 			if(parameters.isLogToFile()) {
 				System.out.println("soy file appender");
 				getLogger().addHandler(_fh);
-				getLogger().log(Level.INFO, writeLog(parameters, text));
+				try {
+					getLogger().log(Level.INFO, writeLog(parameters, text));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 	}
 	

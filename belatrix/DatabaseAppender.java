@@ -1,7 +1,5 @@
 package belatrix;
 
-import java.sql.Statement;
-import java.util.List;
 import java.util.Map;
 
 public class DatabaseAppender extends Appender implements LogAppender{
@@ -22,7 +20,12 @@ public class DatabaseAppender extends Appender implements LogAppender{
 	
 			if(parameters.isLogToDatabase()) {
 				System.out.println("soy database appender");
-				writeLog(parameters, text);
+				try {
+					writeLog(parameters, text);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
 			}
 	}
 	

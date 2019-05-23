@@ -9,8 +9,9 @@ public class ApplicationContext {
 		LoggerManager loggerManager = new LoggerManagerImpl();
 		loggerManager.setLogName("MyLog");
 		loggerManager.setParameters(_parameters);
-		loggerManager.setFileURL("/home/gus/Documents/test.txt");
-		loggerManager.logMessage("GUS");
+		loggerManager.setFileURL("/home/gus/Documents/test2.txt");
+//		loggerManager.setFileURL("");
+		loggerManager.logMessage("  f aas  ");
 
 	}
 	
