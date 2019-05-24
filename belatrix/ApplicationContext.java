@@ -5,11 +5,11 @@ public class ApplicationContext {
 	static LogParameter _parameters;
 	public static void main(String[] args) {
 
-		loadTestingData();
+//		loadTestingData();
 		LoggerManager loggerManager = new LoggerManagerImpl();
 		loggerManager.setLogName("MyLog");
 		loggerManager.setParameters(_parameters);
-//		loggerManager.setFileURL("/home/gus/Documents/test2.txt");
+		loggerManager.setFileURL("/home/gus/Documents/test2.txt");
 //		loggerManager.setFileURL("");
 		loggerManager.logMessage("  f aas  ");
 

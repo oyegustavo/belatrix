@@ -6,6 +6,7 @@ public class Appender {
 	private LoggerUtils _loggerUtils;
 	private Logger _logger; 
 	private String _logName;
+	private final static String APPENDER_EXCEPTION = "Text must be specified to be logged";
 	
 	public Appender() {
 		_loggerUtils =  new LoggerUtils();
@@ -14,7 +15,7 @@ public class Appender {
 	
 	public String writeLog(LogParameter logParameter, String text) throws Exception {
 		if (text==null || text.isEmpty()) {
-			throw new Exception("Text must be specified to be logged");
+			throw new AppenderException(APPENDER_EXCEPTION);
 		}
 		StringBuffer logLine = new StringBuffer();
 		_loggerUtils.setParameter(logParameter);

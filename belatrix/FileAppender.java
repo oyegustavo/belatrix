@@ -7,6 +7,7 @@ import java.util.logging.Level;
 public class FileAppender extends Appender implements LogAppender{
 	
 	private FileHandler _fh ;
+	private static final String FILE_APPENDER_EXCEPTION = "fileURL must be specified";
 
 
 	public FileAppender() {
@@ -14,7 +15,7 @@ public class FileAppender extends Appender implements LogAppender{
 	}
 	public FileAppender(String fileURL)throws FileAppenderException {
 		if (fileURL==null || fileURL.isEmpty()) {
-			throw new FileAppenderException("fileURL must be specified");
+			throw new FileAppenderException(FILE_APPENDER_EXCEPTION);
 		}
 		
 		try {
