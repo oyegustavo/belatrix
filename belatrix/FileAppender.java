@@ -12,9 +12,9 @@ public class FileAppender extends Appender implements LogAppender{
 	public FileAppender() {
 		
 	}
-	public FileAppender(String fileURL)throws Exception {
+	public FileAppender(String fileURL)throws FileAppenderException {
 		if (fileURL==null || fileURL.isEmpty()) {
-			throw new Exception("fileURL must be specified");
+			throw new FileAppenderException("fileURL must be specified");
 		}
 		
 		try {

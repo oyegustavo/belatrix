@@ -25,9 +25,9 @@ public class LoggerManagerImpl implements LoggerManager{
 		
 	}
 	
-	private void redirectLog() throws Exception {
+	private void redirectLog() throws InvalidCofigurationException, FileAppenderException {
 		if (_parameters==null || !_parameters.isLogToConsole() && !_parameters.isLogToDatabase() && !_parameters.isLogToFile()) {
-			throw new Exception("Invalid configuration");
+			throw new InvalidCofigurationException("Invalid configuration");
 		} 
 		
 		try {
@@ -40,6 +40,7 @@ public class LoggerManagerImpl implements LoggerManager{
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new FileAppenderException("filerURL must be specified");
 		}
 				
 	}

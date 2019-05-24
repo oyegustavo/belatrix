@@ -9,12 +9,12 @@ public class ApplicationContext {
 		LoggerManager loggerManager = new LoggerManagerImpl();
 		loggerManager.setLogName("MyLog");
 		loggerManager.setParameters(_parameters);
-		loggerManager.setFileURL("/home/gus/Documents/test2.txt");
+//		loggerManager.setFileURL("/home/gus/Documents/test2.txt");
 //		loggerManager.setFileURL("");
 		loggerManager.logMessage("  f aas  ");
 
 	}
-	
+//	
 	static public void loadTestingData() {
 		
 		_parameters = new LogParameter();
