@@ -17,18 +17,18 @@ public class LoggerManagerImpl implements LoggerManager{
 		_parameters=parameters;
 	}
 
-	@Override
-	public void logMessage(String text) {
-	try {
-		redirectLog();
-		_logAppender.appendToLog(text,_parameters);
-	} catch (Exception e) {
-		e.printStackTrace();
-	}
-		
-	}
+//	@Override
+//	public void logMessage(String text) {
+//	try {
+//		redirectLog();
+//		_logAppender.appendToLog(text,_parameters);
+//	} catch (Exception e) {
+//		e.printStackTrace();
+//	}
+//		
+//	}
 	
-	private void redirectLog() throws InvalidCofigurationException, FileAppenderException {
+	private void redirectLog() throws InvalidCofigurationException, FileAppenderException, AppenderException {
 		if (_parameters==null || !_parameters.isLogToConsole() && 
 			!_parameters.isLogToDatabase() && !_parameters.isLogToFile()) {
 			throw new InvalidCofigurationException(INVALID_CONFIGURATION_EXCEPTION);
@@ -44,7 +44,7 @@ public class LoggerManagerImpl implements LoggerManager{
 				_logAppender= new FileAppender(_fileURL);
 				} catch (Exception e) {
 					e.printStackTrace();
-					throw new FileAppenderException(FILE_APPENDER_EXCEPTION);
+					throw e;
 				}
 			}
 		
@@ -72,7 +72,13 @@ public class LoggerManagerImpl implements LoggerManager{
 	public void setFileURL(String _fileURL) {
 		this._fileURL = _fileURL;
 	}
-	
-	
 
+	@Override
+	public void logMessage(String text) throws Exception {
+		redirectLog();
+		_logAppender.appendToLog(text,_parameters);
+		
+	}
+	
+	
 }

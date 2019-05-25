@@ -20,7 +20,6 @@ public class AppenderTest {
 			loadMockData();
 			assertNotNull(appender.writeLog(_parameters, _text));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

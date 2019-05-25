@@ -7,11 +7,17 @@ public class ApplicationContext {
 
 //		loadTestingData();
 		LoggerManager loggerManager = new LoggerManagerImpl();
+		loadTestingData();
 		loggerManager.setLogName("MyLog");
 		loggerManager.setParameters(_parameters);
 		loggerManager.setFileURL("/home/gus/Documents/test2.txt");
 //		loggerManager.setFileURL("");
-		loggerManager.logMessage("  f aas  ");
+		try {
+			loggerManager.logMessage("  f aas  ");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 //	

@@ -16,7 +16,7 @@ public class DatabaseAppender extends Appender implements LogAppender{
 	}
 
 	@Override
-	public void appendToLog(String text,LogParameter parameters) {
+	public void appendToLog(String text,LogParameter parameters) throws Exception {
 	
 			if(parameters.isLogToDatabase()) {
 				System.out.println("soy database appender");
@@ -24,6 +24,7 @@ public class DatabaseAppender extends Appender implements LogAppender{
 					writeLog(parameters, text);
 				} catch (Exception e) {
 					e.printStackTrace();
+					throw e;
 				}
 				
 			}
