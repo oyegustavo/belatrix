@@ -16,7 +16,7 @@ public class LoggerManagerImpl implements LoggerManager{
 		_parameters=parameters;
 	}
 
-	private void redirectLog() throws InvalidCofigurationException, FileAppenderException, AppenderException {
+	private void redirectLog() throws Exception {
 		if (_parameters==null || !_parameters.isLogToConsole() && 
 			!_parameters.isLogToDatabase() && !_parameters.isLogToFile()) {
 			throw new InvalidCofigurationException(INVALID_CONFIGURATION_EXCEPTION);

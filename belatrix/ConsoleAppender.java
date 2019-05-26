@@ -9,7 +9,6 @@ public class ConsoleAppender extends Appender implements LogAppender{
 	@Override
 	public void appendToLog(String text, LogParameter parameters) throws Exception {
 			if(parameters.isLogToConsole()) {
-				System.out.println("soy console appender");
 				getLogger().addHandler(_ch);
 				try {
 					getLogger().log(Level.INFO, writeLog(parameters, text));

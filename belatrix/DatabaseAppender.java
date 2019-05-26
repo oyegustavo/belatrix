@@ -19,7 +19,6 @@ public class DatabaseAppender extends Appender implements LogAppender{
 	public void appendToLog(String text,LogParameter parameters) throws Exception {
 	
 			if(parameters.isLogToDatabase()) {
-				System.out.println("soy database appender");
 				try {
 					writeLog(parameters, text);
 				} catch (Exception e) {

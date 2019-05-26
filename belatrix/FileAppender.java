@@ -36,7 +36,6 @@ public class FileAppender extends Appender implements LogAppender{
 	@Override
 	public void appendToLog(String text,LogParameter parameters) throws Exception {
 			if(parameters.isLogToFile()) {
-				System.out.println("soy file appender");
 				getLogger().addHandler(_fh);
 				try {
 					getLogger().log(Level.INFO, writeLog(parameters, text));
